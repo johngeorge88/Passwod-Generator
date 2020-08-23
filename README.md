@@ -21,4 +21,5 @@ You get to choose the characters needed in your password incuding:
 <li>JavaScript</li>
 </ul>
 This website is built to work with different screen resolution including tablets and phones.
+
 ![password generator demo](./Assets/03-javascript-homework-demo.png)
