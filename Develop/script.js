@@ -1,6 +1,5 @@
 // Assignment code here
 var password = {
-  // lowerCase: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
   lowerCase: ("abcdefghijklmnopqrstuvwxyz"),
   upperCase: ("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
   number: ("0123456789"),
@@ -14,7 +13,7 @@ var passwordLength = function() {
     "Please choose a length of at least 8 characters and no more than 128 characters"
   );
 
-  // check if prompt answer was left blank, user hit "cancel", or provided a number instead
+  // check if prompt answer was left blank, user hit "cancel", or provided a character instead
   if (passwordLengthPrompt === null || passwordLengthPrompt === "" || isNaN(passwordLengthPrompt) || passwordLengthPrompt < 8 || passwordLengthPrompt > 128) {
     window.alert("You need to provide a valid length! Please try again.");
     return passwordLength();
@@ -32,19 +31,26 @@ var passwordLowerCase = function() {
     "Would you like the password to have lower case letters? Enter 'YES' or 'NO' to choose."
   );
 
-  // check if prompt answer was left blank, user hit "cancel", or provided a number instead
   if (passwordLowerPrompt === "YES" || passwordLowerPrompt === "yes") {
-  return true;
+    console.log(passwordLowerPrompt)
+    return password.lowerCase;
+  
+// check if prompt answer was left blank, user hit "cancel", or provided a number instead
 }else (passwordLowerPrompt === null || passwordLowerPrompt === "" || !isNaN(passwordLowerPrompt))
   window.alert("You need to provide a valid length! Please try again.");
   return passwordLowerCase();
-
-  console.log(passwordLowerCase)
 }
 
 function getRandomLower() {
 
 }
+
+
+
+
+// for (var i=0; i < passwordLengthPrompt; i++)
+//   var randomNumber = Math.floor(Math.random() )
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -62,3 +68,4 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 passwordLength ()
+passwordLowerCase ()
