@@ -4,6 +4,7 @@ var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm'
 var number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 var symbol = ['@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-', '+', '=', '{', '[', '}', ']', ';']
 var char = []
+var passwordLength = null;
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -21,12 +22,13 @@ function writePassword() {
 generateBtn.addEventListener("click", startReset);
 
 function startReset() {
-  char =[]
+  char =[];
+  passwordLength = null;
   writePassword()
 }
 
 function generatePassword() {
-  var passwordLength = parseInt(prompt("Please choose a password length of at least 8 characters and no more than 128 characters"));
+  passwordLength = parseInt(prompt("Please choose a password length of at least 8 characters and no more than 128 characters"));
 
   if (passwordLength === null || passwordLength === "" || isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128 ) {
     alert("You need to provide a valid length! Please try again.")
@@ -37,13 +39,13 @@ function generatePassword() {
   var passwordLower = confirm("Would you like your passwod to include Lower Case letters ?")
   var passwordNumber = confirm("Would you like your passwod to include numbers ?")
   var passwordSymbol = confirm("Would you like your passwod to include characters ?")
-  var passChoices= []
+  
 
   if (!passwordUpper && !passwordLower && !passwordNumber && !passwordSymbol){
     alert("Please choose at least on selection for our password charactrs")
     return generatePassword();
   }
-
+  var passChoices= []
   if (passwordUpper) {
     passChoices = passChoices.concat(upperCase)
   }
@@ -65,3 +67,16 @@ function generatePassword() {
   return char.join("");
 
 }
+
+// function passCharacters() {
+//   var passwordUpper = confirm("Would you like your passwod to include Upper Case letters ?")
+//   var passwordLower = confirm("Would you like your passwod to include Lower Case letters ?")
+//   var passwordNumber = confirm("Would you like your passwod to include numbers ?")
+//   var passwordSymbol = confirm("Would you like your passwod to include characters ?")
+//   return {
+//     passwordUpper: passwordUpper,
+//     passwordLower: passwordLower,
+//     passwordNumber: passwordNumber,
+//     passwordSymbol: passwordSymbol
+//   }
+// }
