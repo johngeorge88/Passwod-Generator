@@ -1,6 +1,6 @@
 # Password-Generator
 
-This website generates a random password for you between 8 to 128 charaters each time you press generate password.
+This website generates a random password for you between 8 to 128 characters each time you press "Generate password".
 
 You get to choose the characters needed in your password incuding:
 <ul>
