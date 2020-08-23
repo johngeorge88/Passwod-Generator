@@ -1,56 +1,9 @@
 // Assignment code here
-var password = {
-  lowerCase: ("abcdefghijklmnopqrstuvwxyz"),
-  upperCase: ("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
-  number: ("0123456789"),
-  symbol: ("!@#$%^&*()_-+={[}];'<,>.?/")
-}
-
-//Password length
-var passwordLength = function() {
-  // ask about lenght
-  var passwordLengthPrompt = window.prompt(
-    "Please choose a length of at least 8 characters and no more than 128 characters"
-  );
-
-  // check if prompt answer was left blank, user hit "cancel", or provided a character instead
-  if (passwordLengthPrompt === null || passwordLengthPrompt === "" || isNaN(passwordLengthPrompt) || passwordLengthPrompt < 8 || passwordLengthPrompt > 128) {
-    window.alert("You need to provide a valid length! Please try again.");
-    return passwordLength();
-  }else {
-  // convert answer from prompt to an actual number
-  passwordLengthPrompt = parseInt(passwordLengthPrompt);
-  }
-  console.log(passwordLengthPrompt)
-}
-
-//Password Lower case
-var passwordLowerCase = function() {
-  //ask about lower Case
-  var passwordLowerPrompt = window.prompt(
-    "Would you like the password to have lower case letters? Enter 'YES' or 'NO' to choose."
-  );
-
-  if (passwordLowerPrompt === "YES" || passwordLowerPrompt === "yes") {
-    console.log(passwordLowerPrompt)
-    return password.lowerCase;
-  
-// check if prompt answer was left blank, user hit "cancel", or provided a number instead
-}else (passwordLowerPrompt === null || passwordLowerPrompt === "" || !isNaN(passwordLowerPrompt))
-  window.alert("You need to provide a valid length! Please try again.");
-  return passwordLowerCase();
-}
-
-function getRandomLower() {
-
-}
-
-
-
-
-// for (var i=0; i < passwordLengthPrompt; i++)
-//   var randomNumber = Math.floor(Math.random() )
-
+var upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+var number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+var symbol = ['@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-', '+', '=', '{', '[', '}', ']', ';']
+var char = []
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -65,7 +18,50 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", startReset);
 
-passwordLength ()
-passwordLowerCase ()
+function startReset() {
+  char =[]
+  writePassword()
+}
+
+function generatePassword() {
+  var passwordLength = parseInt(prompt("Please choose a password length of at least 8 characters and no more than 128 characters"));
+
+  if (passwordLength === null || passwordLength === "" || isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128 ) {
+    alert("You need to provide a valid length! Please try again.")
+    return generatePassword();
+  }
+
+  var passwordUpper = confirm("Would you like your passwod to include Upper Case letters ?")
+  var passwordLower = confirm("Would you like your passwod to include Lower Case letters ?")
+  var passwordNumber = confirm("Would you like your passwod to include numbers ?")
+  var passwordSymbol = confirm("Would you like your passwod to include characters ?")
+  var passChoices= []
+
+  if (!passwordUpper && !passwordLower && !passwordNumber && !passwordSymbol){
+    alert("Please choose at least on selection for our password charactrs")
+    return generatePassword();
+  }
+
+  if (passwordUpper) {
+    passChoices = passChoices.concat(upperCase)
+  }
+  if (passwordLower) {
+    passChoices = passChoices.concat(lowerCase)
+  }
+  if (passwordNumber) {
+    passChoices = passChoices.concat(number)
+  }
+  if (passwordSymbol) {
+    passChoices = passChoices.concat(symbol)
+  }
+
+  for (var i = 0; i < passwordLength; i++) {
+    var randomNumber = Math.floor(Math.random() * passChoices.length);
+    var character = passChoices[randomNumber]
+    char.push(character)
+  }
+  return char.join("");
+
+}
